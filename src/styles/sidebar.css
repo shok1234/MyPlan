@@ -1,0 +1,94 @@
+/* BASE SIDEBAR */
+.sidebar {
+  min-height: 100vh;
+  background: #111827;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  border-right: 1px solid #1f2937;
+
+  transition: width 0.3s ease;
+  border-right: 1px solid #1f2937;
+  overflow: hidden;
+}
+
+/* WIDTH STATES */
+.sidebar.open {
+  width: 220px;
+}
+
+.sidebar.closed {
+  width: 70px;
+}
+
+/* LOGO AREA */
+.logo {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo.closed {
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* TOGGLE BUTTON */
+.toggle {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* MENU */
+.menu {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ITEMS */
+.item {
+  color: white;
+  text-decoration: none;
+
+  padding: 10px;
+  border-radius: 10px;
+
+  transition: 0.2s;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.item:hover {
+  background: #1f2937;
+}
+
+/* ACTIVE LINK (NavLink auto class) */
+.item.active {
+  background: #1f2937;
+  border-left: 3px solid #6366f1;
+}
+.logout {
+  margin-top: auto;
+  padding: 12px;
+  border: none;
+  background: #dc2626;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 12px;
+}

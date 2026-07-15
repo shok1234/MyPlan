@@ -1,0 +1,29 @@
+.navbar {
+  height: 60px;
+  width: 100%;
+  background: #111;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+}
+
+/* hamburger */
+.menu-btn {
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* title */
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}

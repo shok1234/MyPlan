@@ -1,0 +1,40 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 70px;
+  background: #111827;
+  color: white;
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.sidebar.open {
+  width: 220px;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  background: #0b1220;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
