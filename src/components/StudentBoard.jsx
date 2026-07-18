@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../services/supabaseClient";
 import "../styles/StudentBoard.css";
-
+import { useTranslation } from "react-i18next";
 export default function StudentBoard() {
   const [date, setDate] = useState("");
   const [task, setTask] = useState("");
@@ -11,6 +11,7 @@ export default function StudentBoard() {
   const [studyHours, setStudyHours] = useState("");
   const [tasks, setTasks] = useState([]);
   const [taskType, setTaskType] = useState("Exam");
+  const { t } = useTranslation();
   useEffect(() => {
   fetchTasks();
 }, []);
@@ -54,20 +55,20 @@ export default function StudentBoard() {
         subject,
         priority,
         due_date: date,
-        exam_date: taskType === "Exam" ? examDate : null,
+        exam_date: examDate,
         study_hours: Number(studyHours),
         status: "pending",
       },
     ])
     .select();
      console.log("DATA:", data);
-  console.log("ERROR:", error);
+     console.log("ERROR:", error);
 
-  if (error) {
+    if (error) {
     console.error(error);
     alert(error.message);
     return;
-  }
+    }
 
     setTasks([data[0], ...tasks]);
 
@@ -78,7 +79,7 @@ export default function StudentBoard() {
     setTaskType("Exam");
     setExamDate("");
     setStudyHours("");
-  };
+ };
 
   const toggleDone = async (id, currentStatus) => {
     await supabase
@@ -95,7 +96,7 @@ export default function StudentBoard() {
     await supabase.from("student_tasks").delete().eq("id", id);
     fetchTasks();
   };
-const addStudyTime = async (task, hours) => {
+  const addStudyTime = async (task, hours) => {
   const today = new Date().toISOString().split("T")[0];
 
   let todayHours = Number(task.today_hours || 0);
@@ -141,14 +142,14 @@ const addStudyTime = async (task, hours) => {
 
   return (
     <div className="student-board">
-      <h2>Student Planner</h2>
+      <h2>{t("studentPlanner")}</h2>
       <p className="page-subtitle">
-      Organize your study tasks and track your daily progress.
+      {t("subtitle")}
     </p>
 
       <div className="progressBox">
       <div className="progressHeader">
-        <span>Overall Progress</span>
+        <span>{t("overallProgress")}</span>
         <span>{progress}%</span>
       </div>
        <div className="progressBar">
@@ -157,8 +158,8 @@ const addStudyTime = async (task, hours) => {
     </div>
 
 
-      <div className="inputBox">
-        <label>Task Deadline</label>
+     <div className="inputBox">
+        <label>{t("taskDeadline")}</label>
         <input
           type="date"
           value={date}
@@ -167,26 +168,26 @@ const addStudyTime = async (task, hours) => {
 
         <input
           type="text"
-          placeholder="Task title..."
+          placeholder={t("taskTitle")}
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
-        <label>Task Type</label>
+        <label>{t("taskType")}</label>
 
-<select
-  value={taskType}
-  onChange={(e) => setTaskType(e.target.value)}>
-  <option value="Exam">Exam</option>
-  <option value="Quiz">Quiz</option>
-  <option value="Assignment">Assignment</option>
-  <option value="Project">Project</option>
-  <option value="Homework">Homework</option>
-  <option value="Presentation">Presentation</option>
-</select>
+    <select
+      value={taskType}
+      onChange={(e) => setTaskType(e.target.value)}>
+      <option value="Exam">{t("exam")}</option>
+      <option value="Quiz">{t("quiz")}</option>
+      <option value="Assignment">{t("assignment")}</option>
+      <option value="Project">{t("project")}</option>
+      <option value="Homework">{t("homework")}</option>
+      <option value="Presentation">{t("presentation")}</option>
+    </select>
 
         <input
           type="text"
-          placeholder="Subject..."
+          placeholder={t("subject")}
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
         />
@@ -195,14 +196,16 @@ const addStudyTime = async (task, hours) => {
           value={priority}
           onChange={(e) => setPriority(e.target.value)}
         >
-          <option>High</option>
-          <option>Medium</option>
-          <option>Low</option>
+          <option>{t("high")}</option>
+          <option>{t("medium")}</option>
+          <option>{t("low")}</option>
         </select>
 
-        {taskType === "Exam" && (
+        {(taskType === "Exam" || taskType === "Quiz") && (
   <>
-    <label>Exam Date</label>
+    <label>
+  {taskType === "Quiz" ? t("quizDate") : t("examDate")}
+</label>
 
     <input
       type="date"
@@ -214,94 +217,163 @@ const addStudyTime = async (task, hours) => {
 
         <input
           type="number"
-          placeholder="Planned Study Hours"
+          placeholder={t("plannedStudyHours")}
           value={studyHours}
           onChange={(e) => setStudyHours(e.target.value)}
         />
 
        <button className="primary-btn" onClick={addTask}>
-  Add Task
+  {t("addTask")}
 </button>
       </div>
 
       <h3 className="section-title active-title">
-       Active Plans
+       {t("activePlans")}
       </h3>
 
-      {activeTasks.map((t) => (
-        <div key={t.id} className="card">
-          <div className="cardContent">
-            <div className="task">{t.title}</div>
-            <div className="task-type">
-            {t.task_type}
-            </div>
-            <div className="subject">{t.subject}</div>
+      {activeTasks.map((task) => {
+  const daysLeft = getDaysLeft(task.exam_date);
 
-  {(t.task_type === "Exam" || t.task_type === "Quiz") ? (
-  <>
-    <div className="card-section">
-      <label>Exam Date</label>
-      <p>{t.exam_date}</p>
-    </div>
+  const dailyGoal =
+    task.exam_date
+      ? (
+          Number(task.study_hours) /
+          Math.max(daysLeft, 1)
+        ).toFixed(1)
+      : "-";
+      const studyLimitReached =
+  Number(task.today_hours) >= Number(task.study_hours);
 
-    <div className="card-section">
-      <label>Days Remaining</label>
-      <p>{getDaysLeft(t.exam_date)} days</p>
-    </div>
-  </>
-) : (
-  <div className="card-section">
-    <label>Deadline</label>
-    <p>{t.due_date}</p>
-  </div>
-)}
+  const studyProgress =
+    Number(task.study_hours) > 0
+      ? Math.min(
+          100,
+          (Number(task.today_hours || 0) /
+            Number(task.study_hours)) * 100
+        )
+      : 0;
 
-<div className="info-row">
-  <span className="info-label">Total Study</span>
-  <span>{Number(t.study_hours).toFixed(1)} hours</span>
-</div>
+  return (
+    <div key={task.id} className="task-card">
 
-<div className="info-row">
-  <span className="info-label">Daily Target</span>
-  <span>
-    {(
-      Number(t.study_hours) /
-      Math.max(getDaysLeft(t.exam_date), 1)
-    ).toFixed(1)}{" "}
-    hours/day
-  </span>
-</div>
-
-<div className="info-row">
-  <span className="info-label">Today's Study</span>
-  <span>
-    {Number(t.today_hours || 0).toFixed(1)} hours
-  </span>
-</div>
-
-            <div className={`priority ${t.priority.toLowerCase()}`}>
-              {t.priority}
-            </div>
-          </div>
-<div className="actions">
-  <button onClick={() => addStudyTime(t, 1)}>
-    Add 1 Hour
-  </button>
-
-  <button onClick={() => toggleDone(t.id, t.done)}>
-    Complete
-  </button>
-
-  <button onClick={() => deleteTask(t.id)}>
-    Delete
-  </button>
-</div>
- 
+      <div className="task-header">
+        <div>
+          <h3>{task.title}</h3>
+          <p>
+           {t(task.task_type.toLowerCase())} • {task.subject}
+          </p>
         </div>
-      ))}
+
+        <span className={`priority ${task.priority.toLowerCase()}`}>
+          {t(task.priority.toLowerCase())}
+        </span>
+      </div>
+
+      <div className="task-grid">
+
+        {task.task_type === "Exam" ||
+        task.task_type === "Quiz" ? (
+          <>
+            <div>
+  <label>
+    {task.task_type === "Quiz" ?  t("quizDate") : t("examDate")}
+  </label>
+  <span>{task.exam_date}</span>
+</div>
+
+        <div>
+  <label>{t("remaining")}</label>
+  <span>
+    {!task.exam_date
+      ? "-"
+      : daysLeft === 0
+      ? t("today")
+      : `${daysLeft} ${t("days")}`
+      }
+  </span>
+</div>
+          </>
+        ) : (
+          <div>
+            <label>Deadline</label>
+            <span>{task.due_date}</span>
+          </div>
+        )}
+
+        <div>
+          <label>{t("plannedStudy")}</label>
+          <span>{Number(task.study_hours).toFixed(1)} h</span>
+        </div>
+
+        <div>
+          <label>{t("dailyGoal")}</label>
+          <span>{dailyGoal} h/day</span>
+        </div>
+
+        <div>
+          <label>{t("todayStudy")}</label>
+          <span>{Number(task.today_hours || 0).toFixed(1)} h</span>
+        </div>
+
+      </div>
+
+      <div className="study-progress">
+
+  <div className="study-progress-bar">
+    <div
+      className="study-progress-fill"
+      style={{ width: `${studyProgress}%` }}
+    ></div>
+  </div>
+
+</div>
+      <div className="study-status">
+  {Number(task.today_hours || 0) < Number(task.study_hours) ? (
+    <span>
+      {(Number(task.study_hours) - Number(task.today_hours || 0)).toFixed(1)} {t("hoursRemaining")}
+    </span>
+  ) : Number(task.today_hours || 0) === Number(task.study_hours) ? (
+    <span className="goal-reached">
+     {t("dailyGoalReached")}
+    </span>
+  ) : (
+    <div className="overstudy-warning">
+    {t("exceededGoal")}{" "}
+    {(Number(task.today_hours) - Number(task.study_hours)).toFixed(1)} h
+  </div>
+  )}
+</div>
+
+      <div className="task-actions">
+       <button
+  disabled={studyLimitReached}
+  onClick={() => addStudyTime(task, 1)}
+>
+  {studyLimitReached ? t("goalReached") : t("study")}
+</button>
+
+        <button
+          onClick={() =>
+            toggleDone(task.id, task.done)
+          }
+        >
+          {t("complete")}
+        </button>
+
+        <button
+          className="delete-btn"
+          onClick={() => deleteTask(task.id)}
+        >
+          {t("delete")}
+        </button>
+      </div>
+
+    </div>
+  );
+})}
 
       <h3 className="section-title completed-title">
-      Completed
+      {t("completed")}
       </h3>
 
       {doneTasks.map((t) => (

@@ -1,10 +1,10 @@
 .profile-page {
   padding: 30px;
-  color: white;
+  color:var(--text);
 }
 
 .profile-card {
-  background: #111827;
+  background:var(--surface);
   border-radius: 20px;
   overflow: visible;
   margin-bottom: 20px;
@@ -34,7 +34,7 @@
   height: 135px;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid white;
+  border: 5px solid var(--border);
   display: block;
   background: #1f2937;
 }

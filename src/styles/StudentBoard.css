@@ -168,11 +168,11 @@
 
 /* ---------- Study Progress ---------- */
 
-.studyProgress {
+.study-progress {
   margin-top: 18px;
 }
 
-.studyProgress p {
+.study-progress p {
   margin-bottom: 10px;
   color: #cbd5e1;
 }
@@ -317,4 +317,145 @@
 .info-row span:last-child {
   color: #f8fafc;
   font-weight: 600;
+}
+.task-card{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:18px;
+    padding:24px;
+    margin-bottom:22px;
+}
+
+.task-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:20px;
+}
+
+.task-header h3{
+    margin:0;
+    font-size:22px;
+}
+
+.task-header p{
+    margin-top:6px;
+    color:#94a3b8;
+}
+
+.task-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin-bottom:20px;
+}
+
+.task-grid label{
+    display:block;
+    color:#94a3b8;
+    font-size:13px;
+    margin-bottom:6px;
+}
+
+.task-grid span{
+    color:white;
+    font-weight:600;
+}
+
+.task-progress{
+    margin:20px 0;
+}
+
+.task-actions{
+    display:flex;
+    gap:12px;
+}
+
+.task-actions button{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#7c3aed;
+    color:white;
+}
+
+.delete-btn{
+    background:#ef4444;
+}
+
+@media(max-width:700px){
+
+.task-grid{
+grid-template-columns:1fr;
+}
+
+.task-header{
+flex-direction:column;
+gap:12px;
+}
+
+.task-actions{
+flex-direction:column;
+}
+
+}
+.study-status {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.goal-reached {
+  color: #22c55e;
+}
+
+.goal-exceeded {
+  color: #a78bfa;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.overstudy-warning {
+  margin: 20px 0 25px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(255, 170, 0, 0.12);
+  border-left: 4px solid #f59e0b;
+  color: #fbbf24;
+  font-weight: 600;
+  text-align: center;
+}
+.study-progress {
+  margin: 18px 0;
+}
+
+.study-progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #1f2937;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.study-progress-fill {
+  height: 100%;
+  background: #7c3aed;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+
+.study-status {
+  margin-top: 10px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+
+.task-actions {
+  margin-top: 15px;
 }

@@ -1,16 +1,16 @@
 /* BASE SIDEBAR */
 .sidebar {
   min-height: 100vh;
-  background: #111827;
-  color: white;
+  background:var(--surface);
+  color:var(--text);
 
   display: flex;
   flex-direction: column;
 
-  border-right: 1px solid #1f2937;
+  border-right: 1px solid var(--border);
 
   transition: width 0.3s ease;
-  border-right: 1px solid #1f2937;
+ 
   overflow: hidden;
 }
 
@@ -45,7 +45,7 @@
 .toggle {
   background: transparent;
   border: none;
-  color: white;
+  color: var(--text);
   font-size: 22px;
   cursor: pointer;
 }
@@ -60,7 +60,7 @@
 
 /* ITEMS */
 .item {
-  color: white;
+  color: var(--text);
   text-decoration: none;
 
   padding: 10px;
@@ -74,13 +74,13 @@
 }
 
 .item:hover {
-  background: #1f2937;
+  background:var(--hover);
 }
 
 /* ACTIVE LINK (NavLink auto class) */
 .item.active {
-  background: #1f2937;
-  border-left: 3px solid #6366f1;
+  background: var(--hover);
+  border-left: 3px solid var(--primary);
 }
 .logout {
   margin-top: auto;
@@ -91,4 +91,20 @@
   cursor: pointer;
   border-radius: 8px;
   margin: 12px;
+}
+[dir="rtl"] .sidebar {
+
+border-right:none;
+
+border-left:1px solid var(--border);
+
+}
+
+
+[dir="ltr"] .sidebar {
+
+border-left:none;
+
+border-right:1px solid var(--border);
+
 }

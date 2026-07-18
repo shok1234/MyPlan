@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../services/supabaseClient";
 import "../styles/Profile.css";
 import "../styles/Auth.css";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
   const [fullName, setFullName] = useState("");
@@ -16,6 +17,7 @@ export default function Profile() {
 
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchProfile();
@@ -82,7 +84,7 @@ export default function Profile() {
     if (!file) return;
 
     if (!file.type.startsWith("image/")) {
-      setErrorMsg("Please upload an image file");
+      setErrorMsg(t("uploadImageError"));
       return;
     }
 
@@ -139,11 +141,11 @@ export default function Profile() {
       return;
     }
 
-    setSuccessMsg("Profile updated successfully");
+    setSuccessMsg(t("profileUpdated"));
     await fetchProfile();
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>{t("loading")}</p>;
 
   return (
     <div className="profile-page">
@@ -163,7 +165,7 @@ export default function Profile() {
             />
 
             <label className="upload-btn">
-              Change Photo
+              {t("changePhoto")}
               <input
                 type="file"
                 hidden
@@ -173,7 +175,7 @@ export default function Profile() {
           </div>
 
           <div className="user-info">
-            <h2>{fullName || "Your Name"}</h2>
+            <h2>{fullName || t("yourName")}</h2>
             <p>{email}</p>
           </div>
         </div>
@@ -181,27 +183,27 @@ export default function Profile() {
         <div className="stats">
           <div className="stat-box">
             <h3>{totalTasks}</h3>
-            <p>Total Tasks</p>
+            <p>{t("totalTasks")}</p>
           </div>
 
           <div className="stat-box">
             <h3>{completedTasks}</h3>
-            <p>Completed</p>
+            <p>{t("completed")}</p>
           </div>
 
           <div className="stat-box">
             <h3>{upcomingTasks}</h3>
-            <p>Upcoming</p>
+            <p>{t("upcoming")}</p>
           </div>
         </div>
       </div>
 
       <div className="edit-card">
-        <h3>Edit Profile</h3>
+        <h3>{t("editProfile")}</h3>
 
         <input
           type="text"
-          placeholder="Full name"
+          placeholder={t("fullName")}
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
         />
@@ -221,7 +223,7 @@ export default function Profile() {
         )}
 
         <button onClick={updateProfile}>
-          Save Changes
+          {t("saveChanges")}
         </button>
       </div>
     </div>
