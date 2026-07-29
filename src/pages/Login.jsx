@@ -2,14 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { supabase } from "../services/supabaseClient";
 import "../styles/Auth.css";
-
+import { useTranslation } from "react-i18next";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const login = async () => {
+    
     setErrorMsg("");
 
     const { error } = await supabase.auth.signInWithPassword({
@@ -18,7 +20,7 @@ export default function Login() {
     });
 
     if (error) {
-      setErrorMsg("Invalid email or password");
+      setErrorMsg(t("auth.invalidLogin"));
       return;
     }
 
@@ -29,13 +31,13 @@ export default function Login() {
     <div className="auth-page">
       <div className="auth-left">
         <h1>MyPlan</h1>
-        <h2>Welcome Back</h2>
-        <p>Organize your life smarter.</p>
+        <h2>{t("auth.welcomeBack")}</h2>
+        <p>{t("auth.organizeLife")}</p>
       </div>
 
       <div className="auth-right">
         <div className="auth-card">
-          <h2>Login</h2>
+          <h2>{t("auth.login")}</h2>
 
           {errorMsg && (
             <p className="auth-error">{errorMsg}</p>
@@ -43,22 +45,24 @@ export default function Login() {
 
           <input
             type="email"
-            placeholder="Email"
+            placeholder={t("auth.email")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <input
             type="password"
-            placeholder="Password"
+            placeholder={t("auth.password")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button onClick={login}>Login</button>
+          <button onClick={login}>
+            {t("auth.login")}
+          </button>
 
           <p>
-            Don’t have an account? <Link to="/signup">Sign Up</Link>
+            {t("auth.noAccount")} <Link to="/signup">{t("auth.signup")}</Link>
           </p>
         </div>
       </div>

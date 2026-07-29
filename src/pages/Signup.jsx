@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../services/supabaseClient";
 import "../styles/Auth.css";
+import { useTranslation } from "react-i18next";
 
 export default function Signup() {
   const [fullName, setFullName] = useState("");
@@ -9,6 +10,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  const { t } = useTranslation();
 
   const handleSignup = async () => {
     setErrorMsg("");
@@ -24,7 +26,7 @@ export default function Signup() {
       return;
     }
 
-    setSuccessMsg("Account created successfully. You can now log in.");
+    setSuccessMsg(t("auth.accountCreated"));
   };
 
   return (
@@ -32,16 +34,17 @@ export default function Signup() {
       {/* LEFT SIDE */}
       <div className="auth-left">
         <h1>MyPlan</h1>
-        <h2>Start planning today.</h2>
+        <h2>{t("auth.startPlanning")}</h2>
+
         <p>
-          Build habits. Track tasks. Stay productive.
+         {t("auth.buildHabits")}
         </p>
       </div>
 
       {/* RIGHT SIDE */}
       <div className="auth-right">
         <div className="auth-card">
-          <h2>Create Account</h2>
+          <h2>{t("auth.createAccount")}</h2>
 
           {errorMsg && (
             <p className="auth-error">{errorMsg}</p>
@@ -53,7 +56,7 @@ export default function Signup() {
 
           <input
             type="text"
-            placeholder="Full Name"
+            placeholder={t("auth.fullName")}
             value={fullName}
             onChange={(e) =>
               setFullName(e.target.value)
@@ -62,7 +65,7 @@ export default function Signup() {
 
           <input
             type="email"
-            placeholder="Email"
+            placeholder={t("auth.email")}
             value={email}
             onChange={(e) =>
               setEmail(e.target.value)
@@ -71,7 +74,7 @@ export default function Signup() {
 
           <input
             type="password"
-            placeholder="Password"
+            placeholder={t("auth.password")}
             value={password}
             onChange={(e) =>
               setPassword(e.target.value)
@@ -79,12 +82,12 @@ export default function Signup() {
           />
 
           <button onClick={handleSignup}>
-            Sign Up
+            {t("auth.signup")}
           </button>
 
           <p>
-            Already have an account?{" "}
-            <Link to="/login">Login</Link>
+            {t("auth.haveAccount")}{" "}
+            <Link to="/login">{t("auth.login")}</Link>
           </p>
         </div>
       </div>

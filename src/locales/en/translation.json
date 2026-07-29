@@ -71,6 +71,23 @@
  "version":"Version",
  "developed by":"developed by",
  "theme":"Theme",
- "language":"Language"
+ "language":"Language",
+  "auth": {
+    "welcomeBack": "Welcome Back",
+    "organizeLife": "Organize your life smarter.",
+    "startPlanning": "Start planning today.",
+    "buildHabits": "Build habits, track tasks, and stay productive.",
+    "createAccount": "Create Account",
+    "fullName": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "signup": "Sign Up",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "invalidLogin": "Invalid email or password",
+    "accountCreated": "Account created successfully. You can now log in."
+  }
+
 
 }
