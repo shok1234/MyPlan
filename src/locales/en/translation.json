@@ -66,6 +66,11 @@
  "settings":"Settings",
  "language":"Language",
  "appearance":"Appearance",
- "changePhoto":"Change Photo"
+ "changePhoto":"Change Photo",
+ "about":"About",
+ "version":"Version",
+ "developed by":"developed by",
+ "theme":"Theme",
+ "language":"Language"
 
 }

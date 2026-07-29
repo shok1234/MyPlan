@@ -3,48 +3,29 @@ import { createContext, useEffect, useState } from "react";
 export const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") || "system"
   );
 
-
   useEffect(() => {
-
     const root = document.documentElement;
 
-    if(theme === "dark"){
-      root.setAttribute("data-theme","dark");
+    let currentTheme = theme;
+
+    if (theme === "system") {
+      currentTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
     }
 
-    else if(theme === "light"){
-      root.setAttribute("data-theme","light");
-    }
+    root.setAttribute("data-theme", currentTheme);
 
-    else {
-
-      const dark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-
-
-      root.setAttribute(
-        "data-theme",
-        dark ? "dark" : "light"
-      );
-    }
-
-
-    localStorage.setItem("theme",theme);
-
-
-  },[theme]);
-
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{theme,setTheme}}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
-
 }

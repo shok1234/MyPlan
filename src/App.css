@@ -5,6 +5,15 @@ body,
   padding: 0;
   height: 100%;
   overflow-x: hidden;
+  background: var(--background);
+  color: var(--text);
+  font-family: Inter, Arial, sans-serif;
+}
+* {
+transition:
+background-color .25s ease,
+border-color .25s ease,
+color .25s ease;
 }
 
 * {
@@ -14,13 +23,17 @@ body,
 .app {
   display: flex;
   min-height: 100vh;
+  background:var(--background);
+
+color:var(--text);
+
 }
 
 /* SIDEBAR */
 .sidebar {
   width: 70px;
-  background: #111827;
-  color: white;
+  background: var(--surface);
+  color: var(--text);
   transition: 0.3s;
   overflow: hidden;
 }
@@ -32,7 +45,8 @@ body,
 /* MAIN */
 .main {
   flex: 1;
-  background: #0b1220;
+  background: var(--background);
+  color: var(--text);
   padding: 20px;
   height: 100vh;
   overflow-y: auto;

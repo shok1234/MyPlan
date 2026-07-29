@@ -1,14 +1,14 @@
 .settings-page{
 
 padding:30px;
-color:var(--text-color);
+color:var(--text);
 
 }
 
 
 .settings-card{
 
-background:var(--card-color);
+background:var(--surface);
 border-radius:16px;
 padding:25px;
 max-width:600px;
@@ -42,26 +42,27 @@ padding:12px;
 
 border-radius:8px;
 
-border:1px solid #ccc;
+border:1px solid var(--border);
 
-background:var(--bg-color);
+background:var(--surface);
 
-color:var(--text-color);
+color:var(--text);
 
 }
 
 
 
-.theme-option{
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-color);
+  cursor: pointer;
+}
 
-display:flex;
-
-gap:10px;
-
-margin:12px 0;
-
-cursor:pointer;
-
+.theme-option span {
+  color: inherit;
+  font-size: 15px;
 }
 
 

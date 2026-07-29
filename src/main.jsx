@@ -5,6 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import "./i18n";
 import { ThemeProvider } from "./context/ThemeContext";
 import "./styles/theme.css";
+import "./App.css"
+import "./styles/sidebar.css";
 const savedLanguage = localStorage.getItem("language");
 if (savedLanguage === "ku") {
   document.documentElement.dir = "rtl";

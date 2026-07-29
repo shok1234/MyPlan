@@ -69,48 +69,31 @@ Kurdish
 
 
 <label className="theme-option">
-
-<input
-type="radio"
-value="system"
-checked={theme==="system"}
-onChange={()=>setTheme("system")}
-/>
-
-System
-
+  <input
+    type="radio"
+    checked={theme === "light"}
+    onChange={() => setTheme("light")}
+  />
+  <span>Light</span>
 </label>
-
-
 
 <label className="theme-option">
-
-<input
-type="radio"
-value="dark"
-checked={theme==="dark"}
-onChange={()=>setTheme("dark")}
-/>
-
-Dark
-
+  <input
+    type="radio"
+    checked={theme === "dark"}
+    onChange={() => setTheme("dark")}
+  />
+  <span>Dark</span>
 </label>
-
-
 
 <label className="theme-option">
-
-<input
-type="radio"
-value="light"
-checked={theme==="light"}
-onChange={()=>setTheme("light")}
-/>
-
-Light
-
+  <input
+    type="radio"
+    checked={theme === "system"}
+    onChange={() => setTheme("system")}
+  />
+  <span>System</span>
 </label>
-
 
 
 </div>
@@ -128,7 +111,7 @@ Light
 
 
 <h3>
-ℹ About
+{t("about")}
 </h3>
 
 
@@ -138,12 +121,12 @@ MyPlan
 
 
 <p>
-Version 1.0.0
+{t("version")} 1.0.0
 </p>
 
 
 <p>
-Developed by
+{t("developed by")}
 <br/>
 <strong>
 Shokhan Yousif

@@ -15,6 +15,9 @@ import "./App.css";
 export default function App() {
   const [open, setOpen] = useState(true);
   const [session, setSession] = useState(null);
+  const [theme, setTheme] = useState(
+  localStorage.getItem("theme") || "system"
+);
 
   useEffect(() => {
     const getSession = async () => {
@@ -34,6 +37,51 @@ export default function App() {
   }, []);
 
   console.log("SESSION:", session);
+  useEffect(() => {
+
+  let appliedTheme = theme;
+
+  if (theme === "system") {
+    const systemDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    appliedTheme = systemDark ? "dark" : "light";
+  }
+
+
+  document.documentElement.dataset.theme = appliedTheme;
+
+
+  localStorage.setItem(
+    "theme",
+    theme
+  );
+
+
+}, [theme]);
+ useEffect(() => {
+
+    if (theme !== "system") return;
+
+    const media = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+
+    const update = () => {
+      document.documentElement.dataset.theme =
+        media.matches ? "dark" : "light";
+    };
+
+    update();
+
+    media.addEventListener("change", update);
+
+    return () => {
+      media.removeEventListener("change", update);
+    };
+
+  }, [theme]);
 
   // Not logged in
   if (!session) {
@@ -45,6 +93,7 @@ export default function App() {
       </Routes>
     );
   }
+  
 
   // Logged in
   return (
