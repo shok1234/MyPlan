@@ -108,3 +108,43 @@ border-left:none;
 border-right:1px solid var(--border);
 
 }
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+
+  .sidebar.open {
+    width: 180px;
+  }
+
+  .sidebar.closed {
+    width: 60px;
+  }
+
+  .logo {
+    padding: 12px;
+  }
+
+  .logo-text {
+    font-size: 16px;
+  }
+
+  .menu {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .item {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  .toggle {
+    font-size: 20px;
+  }
+
+  .logout {
+    margin: 8px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+}
