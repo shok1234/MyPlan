@@ -43,7 +43,7 @@ English
 </option>
 
 <option value="ku">
-Kurdish
+{t("kurdish")}
 </option>
 
 </select>
