@@ -467,3 +467,83 @@ button:disabled {
 .inputBox{
 box-shadow:var(--shadow);
 }
+/* Better mobile layout */
+@media (max-width:768px){
+
+  .student-board {
+    padding: 12px;
+  }
+
+
+  .progressBox,
+  .inputBox {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+
+  .card {
+    width: 100%;
+    padding: 22px;
+    border-radius: 16px;
+
+    gap: 18px;
+  }
+
+
+  .task-card {
+    width: 100%;
+    padding: 22px;
+    border-radius: 16px;
+
+    overflow: hidden;
+  }
+
+
+  .task-header h3 {
+    font-size: 20px;
+    word-break: break-word;
+  }
+
+
+  .task-header p {
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+
+  .task-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+
+  .task-grid span {
+    font-size: 15px;
+    overflow-wrap: break-word;
+  }
+
+
+  .task-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+
+  .task-actions button {
+    width: 100%;
+    min-height: 45px;
+  }
+
+
+  .actions {
+    width: 100%;
+    min-width: 0;
+  }
+
+
+  .actions button {
+    width: 100%;
+  }
+
+}

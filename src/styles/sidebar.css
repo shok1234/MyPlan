@@ -147,26 +147,36 @@ border-right:1px solid var(--border);
     transform: translateX(0);
   }
 
-
-  .toggle {
+.toggle {
     position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 2000;
 
-    background: var(--surface);
-    border: 1px solid var(--border);
+    top: 12px;
+    left: 12px;
+
+    z-index: 2000;
 
     width: 42px;
     height: 42px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--surface);
+    color: var(--text);
+
+    border: 1px solid var(--border);
     border-radius: 10px;
+
+    font-size: 22px;
+
+    cursor: pointer;
   }
 
 
   [dir="rtl"] .toggle {
     left: auto;
-    right: 15px;
+    right: 12px;
   }
 
 }
