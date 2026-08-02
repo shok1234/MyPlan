@@ -42,7 +42,7 @@
 
 .card h3 {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 
@@ -72,7 +72,6 @@
 
   box-shadow: var(--shadow);
 }
-
 @media (max-width: 768px) {
 
   .home {
@@ -84,17 +83,30 @@
 
   .cards {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
 
-
-  .card {
+.card {
     width: 100%;
-    min-width: 0;
-    overflow: hidden;
+    min-height: 75px;
+
+    padding: 20px;
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 16px;
   }
 
 
   .card h3 {
+    font-size: 16px;
+    margin: 0;
+
     flex: 1;
     min-width: 0;
 
@@ -108,3 +120,5 @@
     width: 100%;
     overflow-x: hidden;
   }
+
+}
