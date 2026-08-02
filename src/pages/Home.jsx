@@ -5,7 +5,7 @@ import DesignBoard from "../components/DesignBoard";
 import CustomBoard from "../components/CustomBoard";
 import { useTranslation } from "react-i18next";
 
-import "../styles/Home.css";
+import "../styles/home.css";
 
 export default function Home() {
   const [category, setCategory] = useState("student");
