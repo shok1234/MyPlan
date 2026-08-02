@@ -72,42 +72,56 @@
 
   box-shadow: var(--shadow);
 }
-/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
 
   .home {
-    padding: 14px;
+    padding: 10px;
+    min-width: 0;
   }
 
 
   .title {
-    font-size: 22px;
-    margin-bottom: 16px;
+    font-size: 21px;
+    margin-bottom: 14px;
   }
 
 
   .cards {
+    width: 100%;
     gap: 10px;
   }
 
 
   .card {
-    padding: 12px 14px;
-    border-radius: 10px;
-    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+
+    padding: 14px;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
   }
 
 
   .card h3 {
     font-size: 13px;
+
+    /* prevent text leaving card */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
 
   .board {
-    margin-top: 16px;
-    padding: 14px;
-    border-radius: 12px;
-    min-height: 400px;
+    width: 100%;
+    min-width: 0;
+
+    padding: 12px;
+    margin-top: 14px;
   }
 
 }
