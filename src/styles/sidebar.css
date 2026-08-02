@@ -110,38 +110,63 @@ border-right:1px solid var(--border);
 }
 @media (max-width: 768px) {
 
-  .sidebar.open {
-    width: 150px;
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    z-index: 1000;
+
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+
+    width: 220px !important;
   }
+
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
 
   .sidebar.closed {
-    width: 55px;
+    width: 220px !important;
   }
 
-  .logo {
-    padding: 12px 8px;
+
+  [dir="rtl"] .sidebar {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
   }
 
-  .logo-text {
-    font-size: 14px;
+
+  [dir="rtl"] .sidebar.open {
+    transform: translateX(0);
   }
 
-  .menu {
-    padding: 6px;
-    gap: 8px;
+
+  .toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+
+    z-index: 1100;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 8px;
   }
 
-  .item {
-    padding: 10px 6px;
-    gap: 6px;
-    font-size: 13px;
-    white-space: nowrap;
-  }
 
-  .logout {
-    margin: 8px;
-    padding: 8px;
-    font-size: 12px;
+  [dir="rtl"] .toggle {
+    left: auto;
+    right: 15px;
   }
 
 }
