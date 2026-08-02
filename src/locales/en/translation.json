@@ -87,7 +87,9 @@
     "haveAccount": "Already have an account?",
     "invalidLogin": "Invalid email or password",
     "accountCreated": "Account created successfully. You can now log in."
-  }
+  },
+  "light":"Light",
+  "dark":"Dark"
 
 
 }

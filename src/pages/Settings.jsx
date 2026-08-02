@@ -74,7 +74,7 @@ Kurdish
     checked={theme === "light"}
     onChange={() => setTheme("light")}
   />
-  <span>Light</span>
+  <span>{t("light")}</span>
 </label>
 
 <label className="theme-option">
@@ -83,17 +83,9 @@ Kurdish
     checked={theme === "dark"}
     onChange={() => setTheme("dark")}
   />
-  <span>Dark</span>
+  <span>{t("dark")}</span>
 </label>
 
-<label className="theme-option">
-  <input
-    type="radio"
-    checked={theme === "system"}
-    onChange={() => setTheme("system")}
-  />
-  <span>System</span>
-</label>
 
 
 </div>
