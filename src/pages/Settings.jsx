@@ -39,7 +39,7 @@ onChange={(e)=>i18n.changeLanguage(e.target.value)}
 >
 
 <option value="en">
-English
+{t("english")}
 </option>
 
 <option value="ku">
