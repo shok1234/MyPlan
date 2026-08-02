@@ -6,15 +6,16 @@ import { useTranslation } from "react-i18next";
 export default function Sidebar({ open, setOpen }) {
   const { t } = useTranslation();
   return (
+    <>
+        <button className="toggle" onClick={() => setOpen(!open)}>
+          ☰
+        </button>
     <div className={`sidebar ${open ? "open" : "closed"}`}>
 
       {/* LOGO */}
       <div className={`logo ${open ? "open" : "closed"}`}>
         {open && <span className="logo-text">📊 {t("appName")}</span>}
 
-        <button className="toggle" onClick={() => setOpen(!open)}>
-          ☰
-        </button>
       </div>
 
       {/* MENU */}
@@ -43,5 +44,6 @@ export default function Sidebar({ open, setOpen }) {
       </button>
 
     </div>
+    </>
   );
 }
