@@ -457,7 +457,7 @@ box-shadow:var(--shadow);
 @media (max-width:768px){
 
 .student-board {
-    padding: 10px;
+    padding: 16px;
     width: 100%;
 }
 
@@ -487,16 +487,16 @@ box-shadow:var(--shadow);
 
     width: 100%;
 
-    padding: 24px;
+    padding: 32px 24px;
 
-    min-height: 170px;
+    min-height: 220px;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
     display: flex;
     flex-direction: column;
 
-    gap: 20px;
+    gap: 24px;
 }
 
 
@@ -505,11 +505,11 @@ box-shadow:var(--shadow);
 
     width: 100%;
 
-    padding: 26px;
+    padding: 32px 24px;
 
-    min-height: 220px;
+    min-height: 260px;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
 }
 
@@ -528,7 +528,7 @@ box-shadow:var(--shadow);
 
 .task-header h3 {
 
-    font-size:22px;
+    font-size:24px;
 
     overflow-wrap:anywhere;
 
