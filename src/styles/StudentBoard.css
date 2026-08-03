@@ -387,22 +387,7 @@ transition:width .35s ease;
     background:var(--danger);
 }
 
-@media(max-width:700px){
 
-.task-grid{
-grid-template-columns:1fr;
-}
-
-.task-header{
-flex-direction:column;
-gap:12px;
-}
-
-.task-actions{
-flex-direction:column;
-}
-
-}
 .study-status {
   margin-top: 12px;
   text-align: center;
@@ -467,83 +452,166 @@ button:disabled {
 .inputBox{
 box-shadow:var(--shadow);
 }
-/* Better mobile layout */
+/* ================= MOBILE ================= */
+
 @media (max-width:768px){
 
-  .student-board {
-    padding: 12px;
-  }
-
-
-  .progressBox,
-  .inputBox {
-    padding: 18px;
-    border-radius: 14px;
-  }
-
-
-  .card {
+.student-board {
+    padding: 10px;
     width: 100%;
-    padding: 22px;
-    border-radius: 16px;
-
-    gap: 18px;
-  }
+}
 
 
-  .task-card {
+/* Top boxes */
+.progressBox,
+.inputBox {
     width: 100%;
-    padding: 22px;
+    padding: 20px;
     border-radius: 16px;
-
-    overflow: hidden;
-  }
+}
 
 
-  .task-header h3 {
-    font-size: 20px;
-    word-break: break-word;
-  }
-
-
-  .task-header p {
-    font-size: 14px;
-    word-break: break-word;
-  }
-
-
-  .task-grid {
+/* Form */
+.inputBox {
     grid-template-columns: 1fr;
-    gap: 14px;
-  }
+}
+
+.inputBox label,
+.inputBox button {
+    grid-column: span 1;
+}
 
 
-  .task-grid span {
-    font-size: 15px;
-    overflow-wrap: break-word;
-  }
+/* Normal task cards */
+.card {
 
+    width: 100%;
 
-  .task-actions {
+    padding: 24px;
+
+    min-height: 170px;
+
+    border-radius: 18px;
+
+    display: flex;
     flex-direction: column;
+
+    gap: 20px;
+}
+
+
+/* Task cards */
+.task-card {
+
     width: 100%;
-  }
+
+    padding: 26px;
+
+    min-height: 220px;
+
+    border-radius: 18px;
+
+}
 
 
-  .task-actions button {
-    width: 100%;
-    min-height: 45px;
-  }
+/* Header */
+.task-header {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
 
 
-  .actions {
-    width: 100%;
-    min-width: 0;
-  }
+.task-header h3 {
+
+    font-size:22px;
+
+    overflow-wrap:anywhere;
+
+}
 
 
-  .actions button {
-    width: 100%;
-  }
+.task-header p {
+
+    font-size:15px;
+
+    overflow-wrap:anywhere;
+
+}
+
+
+
+/* Information */
+.task-grid {
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:18px;
+
+}
+
+
+.task-grid span {
+
+    font-size:16px;
+
+    overflow-wrap:anywhere;
+
+}
+
+
+
+/* Buttons */
+.actions {
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+.actions button {
+
+    width:100%;
+
+    height:48px;
+
+}
+
+
+
+.task-actions {
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+.task-actions button {
+
+    width:100%;
+
+    min-height:50px;
+
+    font-size:16px;
+
+}
 
 }

@@ -7,9 +7,12 @@ export default function Sidebar({ open, setOpen }) {
   const { t } = useTranslation();
   return (
     <>
-        <button className="toggle" onClick={() => setOpen(!open)}>
-          ☰
-        </button>
+        <button 
+    className="toggle"
+    onClick={() => setOpen(!open)}
+  >
+    ☰
+  </button>
     <div className={`sidebar ${open ? "open" : "closed"}`}>
 
       {/* LOGO */}
