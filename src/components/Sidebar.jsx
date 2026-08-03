@@ -7,13 +7,24 @@ export default function Sidebar({ open, setOpen }) {
   const { t } = useTranslation();
   return (
     <>
-        <button 
-    className="toggle"
-    onClick={() => setOpen(!open)}
+       {!open && (
+  <button 
+    className="toggle" 
+    onClick={() => setOpen(true)}
   >
     ☰
   </button>
+)}
     <div className={`sidebar ${open ? "open" : "closed"}`}>
+      {open && (
+  <button 
+    className="close-toggle"
+    onClick={() => setOpen(false)}
+  >
+    ✕
+  </button>
+)}
+      
 
       {/* LOGO */}
       <div className={`logo ${open ? "open" : "closed"}`}>
