@@ -8,12 +8,14 @@ import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import TopBar from "./components/TopBar";
 
 
 import "./App.css";
 
 export default function App() {
-  const [open, setOpen] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
+  const [open, setOpen] = useState(window.innerWidth >= 1024);
   const [session, setSession] = useState(null);
   const [theme, setTheme] = useState(
   localStorage.getItem("theme") || "system"
@@ -82,6 +84,24 @@ export default function App() {
     };
 
   }, [theme]);
+  useEffect(() => {
+  const handleResize = () => {
+    const desktop = window.innerWidth >= 1024;
+
+    setIsDesktop(desktop);
+
+    if (desktop) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  };
+
+  window.addEventListener("resize", handleResize);
+  handleResize();
+
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
 
   // Not logged in
   if (!session) {
@@ -98,9 +118,19 @@ export default function App() {
   // Logged in
   return (
     <div className="app">
-      <Sidebar open={open} setOpen={setOpen} />
+      <Sidebar 
+      open={open} 
+      setOpen={setOpen} 
+    />
 
-      <main className={`main ${open ? "open" : "closed"}`}>
+    <main className="main">
+
+      {!isDesktop && (
+        <TopBar 
+          open={open} 
+          setOpen={setOpen}
+        />
+      )}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />

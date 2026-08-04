@@ -5,59 +5,51 @@ import { useTranslation } from "react-i18next";
 
 export default function Sidebar({ open, setOpen }) {
   const { t } = useTranslation();
+
   return (
     <>
-       {!open && (
-  <button 
-    className="toggle" 
-    onClick={() => setOpen(true)}
-  >
-    ☰
-  </button>
-)}
-    <div className={`sidebar ${open ? "open" : "closed"}`}>
-      {open && (
-  <button 
-    className="close-toggle"
-    onClick={() => setOpen(false)}
-  >
-    ✕
-  </button>
-)}
       
+      <aside className={`sidebar ${open ? "open" : "closed"}`}>
+      
+        <div className={`logo ${open ? "open" : "closed"}`}>
+          {open && <span className="logo-text">📊 {t("appName")}</span>}
+        </div>
 
-      {/* LOGO */}
-      <div className={`logo ${open ? "open" : "closed"}`}>
-        {open && <span className="logo-text">📊 {t("appName")}</span>}
+        <nav className="menu">
+          <NavLink
+            to="/"
+            className="item"
+            onClick={() => window.innerWidth <= 768 && setOpen(false)}
+          >
+            🏠 {open && t("home")}
+          </NavLink>
 
-      </div>
+          <NavLink
+            to="/profile"
+            className="item"
+            onClick={() => window.innerWidth <= 768 && setOpen(false)}
+          >
+            👤 {open && t("profile")}
+          </NavLink>
 
-      {/* MENU */}
-      <nav className="menu">
-        <NavLink to="/" className="item">
-          🏠 {open && t("home") }
-        </NavLink>
+          <NavLink
+            to="/settings"
+            className="item"
+            onClick={() => window.innerWidth <= 768 && setOpen(false)}
+          >
+            ⚙️ {open && t("settings")}
+          </NavLink>
+        </nav>
 
-        <NavLink to="/profile" className="item">
-          👤 {open && t("profile")}
-        </NavLink>
-
-        <NavLink to="/settings" className="item">
-          ⚙️ {open && t("settings")}
-        </NavLink>
-      </nav>
-
-      {/* LOGOUT */}
-      <button
-        className="logout"
-        onClick={async () => {
-          await supabase.auth.signOut();
-        }}
-      >
-        🚪 {open && t("logout")}
-      </button>
-
-    </div>
+        <button
+          className="logout"
+          onClick={async () => {
+            await supabase.auth.signOut();
+          }}
+        >
+          🚪 {open && t("logout")}
+        </button>
+      </aside>
     </>
   );
 }
